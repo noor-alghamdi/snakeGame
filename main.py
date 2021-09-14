@@ -13,14 +13,28 @@ window.nodelay(1)
 snake = [(4,10), (4, 9 ), (4, 8)]
 food = (10, 20)
 
+window.addch(food[0], food[1], "*")
+key = curses.KEY_RIGHT
+ESC = 27
+
+
+
 # game logic 
 score = 0
 
-while True:
+while key != ESC:
+    window.addstr(0, 2, 'Score ' + str(score) + " ")
+
+    #  increase the spead of the snake
+    window.timeout(150 - len(snake) // 5 + len(snake) // 10 % 120 )
+    
     event = window.getch() # waiting for the next user input (getch())means get the next character
+    pev_key = key
+    key = event  
+  
     for c in snake:
       window.addch(c[0], c[1], "-")
-    
+
     window.addch(food[0], food[1], "*")
 curses.endwin()
 print("Final score is = " + score)
