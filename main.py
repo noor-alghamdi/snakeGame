@@ -7,7 +7,7 @@ window.keypad(1)
 curses.noecho()
 curses.curs_set(0)
 window.border(0)
-window.nodelay(1)
+window.nodelay(1) #-1
 
 #food and snake
 snake = [(4,10), (4, 9 ), (4, 8)]
@@ -29,8 +29,11 @@ while key != ESC:
     window.timeout(150 - len(snake) // 5 + len(snake) // 10 % 120 )
     
     event = window.getch() # waiting for the next user input (getch())means get the next character
-    pev_key = key
-    key = event  
+    prev_key = key
+    key = event if event != -1 else prev_key
+    
+    if key not in (curses.KEY_LEFT, curses.KEY_RIGHT, curses.KEY_UP, curses.KEY_DOWN):
+      key = prev_key
   
     for c in snake:
       window.addch(c[0], c[1], "-")
