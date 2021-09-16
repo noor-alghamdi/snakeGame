@@ -48,6 +48,12 @@ while key != ESC:
     x -= 1
   if key == curses.KEY_RIGHT:
     x += 1 
+
+# check if we hit the boarder
+  if y == 0: break
+  if y == 19: break
+  if x == 0: break
+  if x == 59: break
   
     for c in snake:
       window.addch(c[0], c[1], "-")
