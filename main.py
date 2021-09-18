@@ -57,7 +57,21 @@ while key != ESC:
   # if snake run over itself then it means it eats itself
     if snake[0] in snake[1:]: break
 
-
+  # otherwise snake should eat the food and grow
+    if snake[0] == food:
+    #eat he food
+      score += 1
+      food = ()
+      while food == ():
+          food = (randint(1,20-2), randint(1,60-2))
+          if food in snake:
+            food = ()
+      
+      window.addch(food[0], food[1], '*')
+    else:
+        # move snake
+        last = snake.pop()
+        window.addch(last[0], last[1], ' ')
 
     window.addch(snake[0][0], snake[0][1], '=')
   
