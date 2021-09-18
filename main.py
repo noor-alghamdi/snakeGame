@@ -54,6 +54,9 @@ while key != ESC:
     if x == 60-1: break
 
 
+  # if snake run over itself then it means it eats itself
+    if snake[0] in snake[1:]: break
+
 
 
     window.addch(snake[0][0], snake[0][1], '=')
